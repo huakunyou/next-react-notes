@@ -1,7 +1,7 @@
 /*
  * @Author       : frank
  * @Date         : 2024-04-20 15:07:07
- * @LastEditTime : 2024-04-21 13:51:01
+ * @LastEditTime : 2024-04-21 17:16:47
  * @LastEditors  : frank
  * @Description  : In User Settings Edit
  */
@@ -10,7 +10,7 @@ import { getAllNotes } from '@/lib/redis';
 
 export default async function NoteList() {
   const sleep = ms => new Promise(r => setTimeout(r, ms));
-  await sleep(10000);
+  await sleep(2000);
   const notes = await getAllNotes()
 
   const arr = Object.entries(notes);
