@@ -1,12 +1,17 @@
 /*
  * @Author       : frank
  * @Date         : 2024-04-20 15:07:07
- * @LastEditTime : 2024-04-20 15:12:54
+ * @LastEditTime : 2024-04-21 13:51:01
  * @LastEditors  : frank
  * @Description  : In User Settings Edit
  */
-import dayjs from 'dayjs';
-export default async function NoteList({ notes }) {
+import SidebarNoteItem from '@/components/SidebarNoteItem';
+import { getAllNotes } from '@/lib/redis';
+
+export default async function NoteList() {
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  await sleep(10000);
+  const notes = await getAllNotes()
 
   const arr = Object.entries(notes);
 
@@ -18,12 +23,8 @@ export default async function NoteList({ notes }) {
 
   return <ul className="notes-list">
     {arr.map(([noteId, note]) => {
-      const { title, updateTime } = JSON.parse(note);
       return <li key={noteId}>
-        <header className="sidebar-note-header">
-          <strong>{title}</strong>
-          <small>{dayjs(updateTime).format("YYYY-MM-DD hh:mm:ss")}</small>
-        </header>
+        <SidebarNoteItem noteId={noteId} note={JSON.parse(note)} />
       </li>
     })}
   </ul>
