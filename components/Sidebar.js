@@ -1,20 +1,19 @@
 /*
  * @Author       : frank
  * @Date         : 2024-04-19 16:36:45
- * @LastEditTime : 2024-04-21 13:49:26
+ * @LastEditTime : 2024-04-27 11:30:49
  * @LastEditors  : frank
  * @Description  : In User Settings Edit
  */
 import React, { Suspense } from 'react'
 import Link from 'next/link'
-
+// 导入组件
+import SidebarSearchField from '@/components/SidebarSearchField';
 import SidebarNoteList from '@/components/SidebarNoteList';
 import EditButton from '@/components/EditButton';
 import NoteListSkeleton from '@/components/NoteListSkeleton';
 
-// // 移除数据请求部分，为 SidebarNoteList 添加 Suspense 以及 fallback UI NoteListSkeleton
 export default async function Sidebar() {
-
   return (
     <>
       <section className="col sidebar">
@@ -32,6 +31,7 @@ export default async function Sidebar() {
           </section>
         </Link>
         <section className="sidebar-menu" role="menubar">
+          <SidebarSearchField />
           <EditButton noteId={null}>New</EditButton>
         </section>
         <nav>
@@ -43,4 +43,5 @@ export default async function Sidebar() {
     </>
   )
 }
+
 

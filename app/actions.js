@@ -1,7 +1,7 @@
 /*
  * @Author       : frank
  * @Date         : 2024-04-26 21:17:03
- * @LastEditTime : 2024-04-26 21:38:31
+ * @LastEditTime : 2024-04-27 11:18:57
  * @LastEditors  : frank
  * @Description  : In User Settings Edit
  */
@@ -11,13 +11,12 @@ import { redirect } from 'next/navigation'
 import { addNote, updateNote, delNote } from '@/lib/redis';
 import { revalidatePath } from 'next/cache';
 import { z } from "zod";
+import { sleep } from '@/lib/utils'
 
 const schema = z.object({
   title: z.string(),
   content: z.string().min(1, '请填写内容').max(100, '字数最多 100')
 });
-
-const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 export async function saveNote(prevState, formData) {
 
@@ -38,7 +37,7 @@ export async function saveNote(prevState, formData) {
   }
 
   // 模拟请求时间
-  await sleep(2000)
+  await sleep(1000)
 
   // 更新数据库
   if (noteId) {
