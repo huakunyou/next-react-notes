@@ -1,7 +1,7 @@
 /*
  * @Author       : frank
  * @Date         : 2024-04-26 21:16:00
- * @LastEditTime : 2024-04-26 21:38:43
+ * @LastEditTime : 2024-05-10 15:59:38
  * @LastEditors  : frank
  * @Description  : In User Settings Edit
  */
@@ -10,7 +10,7 @@
 import { useEffect, useRef, useState } from 'react'
 import NotePreview from '@/components/NotePreview'
 import { useFormState } from 'react-dom'
-import { deleteNote, saveNote } from '../app/actions'
+import { deleteNote, saveNote } from '@/actions'
 import SaveButton from '@/components/SaveButton'
 import DeleteButton from '@/components/DeleteButton'
 

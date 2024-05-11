@@ -1,7 +1,7 @@
 /*
  * @Author       : frank
  * @Date         : 2024-04-27 11:28:40
- * @LastEditTime : 2024-04-27 11:28:45
+ * @LastEditTime : 2024-05-11 16:35:24
  * @LastEditors  : frank
  * @Description  : In User Settings Edit
  */
@@ -9,6 +9,7 @@
 
 import { usePathname, useRouter } from 'next/navigation'
 import { useTransition } from 'react'
+import { useTranslation } from "@/app/i18n/client.js"
 
 function Spinner({ active = true }) {
   return (
@@ -20,10 +21,11 @@ function Spinner({ active = true }) {
   );
 }
 
-export default function SidebarSearchField() {
+export default function SidebarSearchField({ lng }) {
   const { replace } = useRouter()
   const pathname = usePathname()
   const [isPending, startTransition] = useTransition()
+  const { t } = useTranslation(lng, 'basic')
 
   function handleSearch(term) {
     const params = new URLSearchParams(window.location.search)
@@ -45,7 +47,7 @@ export default function SidebarSearchField() {
       </label>
       <input
         id="sidebar-search-input"
-        placeholder="Search"
+        placeholder={t('search')}
         type="text"
         onChange={(e) => handleSearch(e.target.value)}
       />
